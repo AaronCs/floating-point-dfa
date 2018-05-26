@@ -16,14 +16,14 @@ using namespace std;
 void print_result(bool result);
 void reset_state(int curr_state);
 void state_transition(int curr_state, bool result);
-void state_1(int curr_state, bool result);
-void state_2(int curr_state, bool result);
-void state_3(int curr_state, bool result);
-void state_4(int curr_state, bool result);
-void state_5(int curr_state, bool result);
-void state_6(int curr_state, bool result);
-void state_7(int curr_state, bool result);
-void state_8(int curr_state, bool result);
+void state_1(char c, int curr_state, bool result);
+void state_2(char c, int curr_state, bool result);
+void state_3(char c, int curr_state, bool result);
+void state_4(char c, int curr_state, bool result);
+void state_5(char c, int curr_state, bool result);
+void state_6(char c, int curr_state, bool result);
+void state_7(char c, int curr_state, bool result);
+void state_8(char c, int curr_state, bool result);
 
 int main() {
     int curr_state = 1; // Initial State is 1.
@@ -49,62 +49,62 @@ void print_result(bool result) {
 }
 
 void state_transition(int curr_state, bool result) {
+    char c = 'a';
     switch(curr_state) {
         case 1:
-            state_1(curr_state, result);
+            state_1(c, curr_state, result);
             break;
         case 2:
-            state_2(curr_state, result);
+            state_2(c, curr_state, result);
             break;
         case 3:
-            state_3(curr_state, result);
+            state_3(c, curr_state, result);
             break;
         case 4:
-            state_4(curr_state, result);
+            state_4(c, curr_state, result);
             break;
         case 5:
-            state_5(curr_state, result);
+            state_5(c, curr_state, result);
             break;
         case 6:
-            state_6(curr_state, result);
+            state_6(c, curr_state, result);
             break;
         case 7:
-            state_7(curr_state, result);
+            state_7(c, curr_state, result);
             break;
         case 8:
-            state_8(curr_state, result);
+            state_8(c, curr_state, result);
             break;
     }
 }
 
-void state_1(int curr_state, bool result) {
+void state_1(char c, int curr_state, bool result) {
 
 }
-void state_2(int curr_state, bool result) {
-
-}
-
-void state_3(int curr_state, bool result) {
+void state_2(char c, int curr_state, bool result) {
 
 }
 
-void state_4(int curr_state, bool result) {
+void state_3(char c, int curr_state, bool result) {
 
 }
 
-void state_5(int curr_state, bool result) {
+void state_4(char c, int curr_state, bool result) {
 
 }
 
-void state_6(int curr_state, bool result) {
+void state_5(char c, int curr_state, bool result) {
 
 }
 
-void state_7(int curr_state, bool result) {
+void state_6(char c, int curr_state, bool result) { 
+}
+
+void state_7(char c, int curr_state, bool result) {
 
 }
 
-void state_8(int curr_state, bool result) {
+void state_8(char c, int curr_state, bool result) {
 
 }
 
