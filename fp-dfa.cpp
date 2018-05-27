@@ -1,5 +1,8 @@
 /*
  * fp detector for CS311
+ * Uses functions as a way to transition through states.
+ * The variable curr_state keeps track of the current state of the machine.
+ *
  *
  * Authors:
  *  Aaron Chan
@@ -10,13 +13,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cstring>
 
 using namespace std;
 
-void print_result(int curr_state, bool & result);
+void print_result(string to_consume, int curr_state, bool & result);
 void reset_state(int & curr_state);
 void state_transition(char c, int & curr_state);
+void consume_string(string to_consume);
 int state_1(char c);
 int state_2(char c);
 int state_3(char c);
@@ -27,19 +30,34 @@ int state_7(char c);
 int state_8(char c);
 
 int main() {
-    string test = "2.e+2.";
+    string to_consume;
+    ifstream in_file;
+    in_file.open("input.txt");
+    if(!in_file) {
+        cerr << "Unable to open input.txt." << endl;
+        return 1;
+    }
+    while( getline(in_file, to_consume, '\n') ) {
+        // For debugging
+        // cout << "TO CONSUME: " << to_consume << endl;
+        consume_string(to_consume);
+    }
+
+    in_file.close();
+    return 0;
+}
+
+void consume_string(string to_consume) {
     int curr_state = 1; // Initial State is 1.
     bool result = false;
-    
-    for(int i = 0; i < test.length(); ++i) {
-        state_transition(test[i], curr_state);
+    for(unsigned int i = 0; i < to_consume.length(); ++i) {
+        state_transition(to_consume[i], curr_state);
         // For debugging.
-        cout << "CURRENT STATE: " << curr_state << endl;
+        // cout << "CURRENT STATE: " << curr_state << endl;
     }
-    print_result(curr_state, result);
+    print_result(to_consume, curr_state, result);
 
     reset_state(curr_state);
-    return 0;
 }
 
 void reset_state(int & curr_state) {
@@ -48,7 +66,7 @@ void reset_state(int & curr_state) {
     curr_state = 1;
 }
 
-void print_result(int curr_state, bool & result) {
+void print_result(string to_consume, int curr_state, bool & result) {
     switch(curr_state) {
         case 2:
         case 4:
@@ -58,9 +76,9 @@ void print_result(int curr_state, bool & result) {
         default:
             result = false;
     }
-    if(result) cout << "Accept" << endl;
+    if(result) cout << "The string: \'" << to_consume << "\' is accepted" << endl;
     else {
-        cout << "Reject" << endl;
+        cout << "The string: \'" << to_consume << "\' is rejected" << endl;
     }
 }
 
