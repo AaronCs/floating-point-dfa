@@ -27,12 +27,15 @@ int state_7(char c);
 int state_8(char c);
 
 int main() {
-    string test = ".";
+    string test = "2.e+2.";
     int curr_state = 1; // Initial State is 1.
     bool result = false;
     
-    state_transition(test[0], curr_state);
-    cout << "CURRENT STATE: " << curr_state << endl;
+    for(int i = 0; i < test.length(); ++i) {
+        state_transition(test[i], curr_state);
+        // For debugging.
+        cout << "CURRENT STATE: " << curr_state << endl;
+    }
     print_result(curr_state, result);
 
     reset_state(curr_state);
@@ -62,7 +65,6 @@ void print_result(int curr_state, bool & result) {
 }
 
 void state_transition(char c, int & curr_state) {
-    // FIXME: Not sure if result should be decided in this function or another
     switch(curr_state) {
         case 1:
             curr_state = state_1(c);
@@ -100,33 +102,95 @@ int state_1(char c) {
     if(nums.find(c) != string::npos) {
         return 2;
     }
-    if(c == '.') return 8;
+    if(c == '+' || c == '-') {
+        return 3;
+    }
+    if(c == '.') {
+        return 8;
+    }
+
+    // Otherwise, dead.
     return 0;
 }
 int state_2(char c) {
+    string nums = "0123456789";
+    if(nums.find(c) != string::npos) {
+        return 2;
+    }
 
+    if(c == 'e' || c == 'E') {
+        return 6;
+    }
+
+    if(c == '.') {
+        return 4;
+    }
+
+    return 0;
 }
 
 int state_3(char c) {
+    string nums = "0123456789";
+    if(nums.find(c) != string::npos) {
+        return 4;
+    }
+    
+    if(c == '.') {
+        return 8;
+    }
 
+    return 0;
 }
 
 int state_4(char c) {
-
+    string nums = "0123456789";
+    if(nums.find(c) != string::npos) {
+        return 4;
+    }
+    if(c == 'e' || c == 'E') {
+        return 6;
+    }
+    
+    return 0;
 }
 
 int state_5(char c) {
+    string nums = "0123456789";
+    if(nums.find(c) != string::npos) {
+        return 5;
+    }
 
+    return 0;
 }
 
 int state_6(char c) { 
+    string nums = "0123456789";
+    if(nums.find(c) != string::npos) {
+        return 5;
+    }
+
+    if(c == '+' || c == '-') {
+        return 7;
+    }
+    
+    return 0;
 }
 
 int state_7(char c) {
+    string nums = "0123456789";
+    if(nums.find(c) != string::npos) {
+        return 5;
+    }
 
+    return 0;
 }
 
 int state_8(char c) {
-
+    string nums = "0123456789";
+    if(nums.find(c) != string::npos) {
+        return 4;
+    }
+    
+    return 0;
 }
 
